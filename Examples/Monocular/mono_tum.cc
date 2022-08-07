@@ -2,7 +2,7 @@
 * This file is part of ORB-SLAM3.
 *
 * Copyright (C) 2014-2016 Raúl Mur-Artal <raulmur at unizar dot es> (University of Zaragoza)
-* For more information see <https://github.com/raulmur/ORB_SLAM2>
+* For more information see <https://github.com/raulmur/ORB_SLAM3>
 *
 * ORB-SLAM3 is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -98,14 +98,14 @@ int main(int argc, char **argv)
         }
 
         // Save points
-        std::vector<ORB_SLAM2::MapPoint*> mapPoints = SLAM.GetMap()->GetAllMapPoints();
+        std::vector<ORB_SLAM3::MapPoint*> mapPoints = SLAM.GetMap()->GetAllMapPoints();
         std::ofstream pointData;
         pointData.open("/tmp/pointData.csv");
         for(auto p : mapPoints) {
             if (p != NULL)
             {
                 auto point = p->GetWorldPos();
-                Eigen::Matrix<double, 3, 1> v = ORB_SLAM2::Converter::toVector3d(point);
+                Eigen::Matrix<double, 3, 1> v = ORB_SLAM3::Converter::toVector3d(point);
                 pointData << v.x() << "," << v.y() << "," << v.z()<<  std::endl;
             }
         }
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
             cerr << endl << "Could not open camera feed." << endl;
             return -1;
         }
-        ORB_SLAM2::System SLAM(argv[2], argv[3], ORB_SLAM2::System::MONOCULAR, true);
+        ORB_SLAM3::System SLAM(argv[2], argv[3], ORB_SLAM3::System::MONOCULAR, true);
         cout << endl << "-------" << endl;
         cout << "Start processing sequence ..." << endl;
 
@@ -160,14 +160,14 @@ int main(int argc, char **argv)
         }
 
         // Save points
-        std::vector<ORB_SLAM2::MapPoint*> mapPoints = SLAM.GetMap()->GetAllMapPoints();
+        std::vector<ORB_SLAM3::MapPoint*> mapPoints = SLAM.GetMap()->GetAllMapPoints();
         std::ofstream pointData;
         pointData.open("/tmp/pointData.csv");
         for(auto p : mapPoints) {
             if (p != NULL)
             {
                 auto point = p->GetWorldPos();
-                Eigen::Matrix<double, 3, 1> v = ORB_SLAM2::Converter::toVector3d(point);
+                Eigen::Matrix<double, 3, 1> v = ORB_SLAM3::Converter::toVector3d(point);
                 pointData << v.x() << "," << v.y() << "," << v.z()<<  std::endl;
             }
         }
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
         int nImages = vstrImageFilenames.size();
 
         // Create SLAM system. It initializes all system threads and gets ready to process frames.
-        ORB_SLAM2::System SLAM(argv[2],argv[3],ORB_SLAM2::System::MONOCULAR,true);
+        ORB_SLAM3::System SLAM(argv[2],argv[3],ORB_SLAM3::System::MONOCULAR,true);
 
         // Vector for tracking time statistics
         vector<float> vTimesTrack;
