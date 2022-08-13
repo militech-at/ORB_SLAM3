@@ -3,36 +3,47 @@
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!
 #--------------------------------------------------------------------------------------------
+File.version: "1.0"
 
 Camera.type: "PinHole"
 
+# Right Camera calibration and distortion parameters (OpenCV)
 
-Camera.fx: 916.4798394056434
-Camera.fy: 919.9110948929223
-Camera.cx:  483.57407010014435
-Camera.cy:  370.87084181752994
+Camera1.fx: 916.4798394056434
+Camera1.fy: 919.9110948929223
+Camera1.cx:  483.57407010014435
+Camera1.cy:  370.87084181752994
 
-Camera.k1: 0.08883662811988326
-Camera.k2: -1.2017058559646074
-Camera.p1: -0.0018395141258008667
-Camera.p2: 0.0015771769902803328
-Camera.k3: 4.487621066094839
+# distortion parameters
+Camera1.k1: 0.08883662811988326
+Camera1.k2: -1.2017058559646074
+Camera1.p1: -0.0018395141258008667
+Camera1.p2: 0.0015771769902803328
+Camera1.k3: 4.487621066094839
 
 Camera.width: 720
 Camera.height: 960
 
-Camera.newWidth: 720
-Camera.newHeight: 960
+  # Camera.newWidth: 720
+  # Camera.newHeight: 960
 
 # Camera frames per second 
-Camera.fps: 30.0
+Camera.fps: 30
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 1
 
+
+# Close/Far threshold. Baseline times.
+Stereo.ThDepth: 40.0
+Stereo.b: 0.0745
+
+# Depth map values factor
+RGBD.DepthMapFactor: 1.0
+
 #--------------------------------------------------------------------------------------------
 # ORB Parameters
-#--------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------  ---------------------------
 
 # ORB Extractor: Number of features per image
 ORBextractor.nFeatures: 4000
@@ -55,13 +66,13 @@ ORBextractor.minThFAST: 7
 # Viewer Parameters
 #--------------------------------------------------------------------------------------------
 Viewer.KeyFrameSize: 0.05
-Viewer.KeyFrameLineWidth: 1
+Viewer.KeyFrameLineWidth: 1.0
 Viewer.GraphLineWidth: 0.9
-Viewer.PointSize: 2
+Viewer.PointSize: 2.0
 Viewer.CameraSize: 0.08
-Viewer.CameraLineWidth: 3
-Viewer.ViewpointX: 0
+Viewer.CameraLineWidth: 3.0
+Viewer.ViewpointX: 0.0
 Viewer.ViewpointY: -0.7
 Viewer.ViewpointZ: -1.8
-Viewer.ViewpointF: 500
+Viewer.ViewpointF: 500.0
 
