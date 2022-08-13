@@ -124,6 +124,8 @@ int main(int argc, char **argv)
             usleep((T-ttrack)*1e6);
     }
 
+   
+
     // Stop all threads
     SLAM.Shutdown();
 
@@ -139,9 +141,31 @@ int main(int argc, char **argv)
     cout << "mean tracking time: " << totaltime/nImages << endl;
 
     // Save camera trajectory
-    SLAM.SaveTrajectoryTUM("CameraTrajectory.txt");
-    SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");   
+    // SLAM.SaveTrajectoryTUM("CameraTrajectory.txt");
+    // SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");   
 
+    
+    std::vector<ORB_SLAM3::MapPoint*> mapPoints = SLAM.GetAllPointsInMap();
+    std::ofstream pointData;
+    pointData.open("/home/junwha/pointData.csv");
+    cout << "Start to writing point\n" << endl;
+    cout << "Number of points: " << mapPoints.size() << endl;
+    for (ORB_SLAM3::MapPoint* p : mapPoints)
+    {
+        
+        // Eigen::Matrix<double, 3, 1> v = ORB_SLAM3::Converter::toVector3d(point);
+        // cout << p << endl;
+        if (p != NULL && !p->isBad()){
+            //  cout << "Finding world position...\n" << endl;
+            Eigen::Matrix<float, 3, 1> v = p->GetWorldPos();
+            // cout << "Try to read point\n" << endl;
+            
+            pointData << v.x() << "," << v.y() << "," << v.z() <<  std::endl;
+        }
+    }   
+    
+    pointData.close();
+    
     return 0;
 }
 

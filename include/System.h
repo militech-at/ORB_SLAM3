@@ -186,6 +186,7 @@ public:
 
     float GetImageScale();
 
+    std::vector<MapPoint*> GetAllPointsInMap();
 #ifdef REGISTER_TIMES
     void InsertRectTime(double& time);
     void InsertResizeTime(double& time);
